@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Laravel</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link
+      href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600"
+      rel="stylesheet"
+      rel="stylesheet"
+    />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css"
+      rel="stylesheet"
+    />
+    
+      <script src="https://unpkg.com/heroicons@2.1.1/dist/heroicons.min.js"></script>
+  </head>
+
+  <body
+    class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"
+  >
+    <header class="bg-white dark:bg-gray-800 flex items-center justify-between px-6 py-3 md:py-4 shadow max-w-5xl rounded-full mx-auto w-full bg-white">
+  <a href="/" class="flex items-center space-x-2">
+  <svg class="w-8 h-8 text-[#2AA4D9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M12 14l9-5-9-5-9 5 9 5z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M12 14l6.16-3.422A12.083 12.083 0 0112 20.055
+         12.083 12.083 0 015.84 10.578L12 14z" />
+  </svg>
+  <span class="text-xl font-semibold">Asesoría Académica</span>
+</a>
+
+    <nav id="menu" class="max-md:absolute max-md:top-0 max-md:left-0 max-md:overflow-hidden items-center justify-center max-md:h-full max-md:w-0 transition-[width] bg-white/50 backdrop-blur flex-col md:flex-row flex gap-8 text-gray-900 text-sm font-normal dark:bg-gray-800/50 dark:text-gray-100 md:static md:flex md:h-auto md:w-auto md:backdrop-blur-0 md:bg-transparent md:dark:bg-transparent md:transition-none md:gap-6 p-6 md:p-0 rounded-lg md:rounded-none shadow-lg md:shadow-none">
+        <a class="hover:text-indigo-600" href="#">
+            Servicios
+        </a>
+        <a class="hover:text-indigo-600" href="#">
+            Proceso
+        </a>
+        <a class="hover:text-indigo-600" href="#">
+            Beneficios
+        </a>
+        <a class="hover:text-indigo-600" href="#">
+            Áreas
+        </a>
+        <a class="hover:text-indigo-600" href="#">
+            Testimonios 
+        </a>
+        <a class="hover:text-indigo-600" href="#">
+            FAQ
+
+        </a>
+        <a class="hover:text-indigo-600" href="#">  
+            Contacto
+        </a>
+        <button id="closeMenu" class="md:hidden text-gray-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </nav>
+    <div class="flex items-center space-x-4">
+        <button id="theme-toggle"
+  class="size-8 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition border border-slate-300 dark:border-gray-600 rounded-md"
+>
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 10.39a2.889 2.889 0 1 0 0-5.779 2.889 2.889 0 0 0 0 5.778M7.5 1v.722m0 11.556V14M1 7.5h.722m11.556 0h.723m-1.904-4.596-.511.51m-8.172 8.171-.51.511m-.001-9.192.51.51m8.173 8.171.51.511"
+                    stroke="#353535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+        <div
+          class="flex items-center md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse"
+        >
+          <button
+            type="button"
+            data-dropdown-toggle="language-dropdown-menu"
+            class="flex items-center text-heading bg-transparent box-border border border-transparent hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded-base text-sm px-3 py-2 focus:outline-none"
+          >
+            <svg
+              class="h-4 w-4 me-1.5"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.00023 16.5C13.1425 16.5 16.5005 13.1421 16.5005 9C16.5005 4.85786 13.1425 1.5 9.00023 1.5C4.85797 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85797 16.5 9.00023 16.5Z"
+                fill="white"
+              />
+              <path
+                d="M8.67548 8.99996H16.5012C16.5012 8.32308 16.4109 7.66735 16.2428 7.04358H8.67548V8.99996Z"
+                fill="#D80027"
+              />
+              <path
+                d="M8.67548 5.08712H15.4004C14.9413 4.338 14.3543 3.67585 13.6699 3.13074H8.67548V5.08712Z"
+                fill="#D80027"
+              />
+              <path
+                d="M9.0005 16.5001C10.7655 16.5001 12.3878 15.89 13.6689 14.8698H4.33209C5.61318 15.89 7.23548 16.5001 9.0005 16.5001Z"
+                fill="#D80027"
+              />
+              <path
+                d="M2.60125 12.9132H15.4C15.7686 12.3118 16.0545 11.6543 16.2425 10.9567H1.75879C1.94679 11.6543 2.23265 12.3118 2.60125 12.9132Z"
+                fill="#D80027"
+              />
+              <path
+                d="M4.97397 2.67114H5.65741L5.0217 3.13297L5.26453 3.88024L4.62884 3.41841L3.99316 3.88024L4.20292 3.23468C3.6432 3.7009 3.15262 4.24713 2.74834 4.85575H2.96732L2.56266 5.14972C2.49962 5.25489 2.43915 5.36173 2.38121 5.47015L2.57444 6.06485L2.21393 5.80293C2.12432 5.99279 2.04235 6.18692 1.96867 6.3851L2.18156 7.04036H2.96732L2.33161 7.50219L2.57444 8.24947L1.93876 7.78764L1.55798 8.0643C1.51986 8.37066 1.5 8.6827 1.5 8.99941H8.99964C8.99964 4.85763 8.99964 4.36934 8.99964 1.5C7.51811 1.5 6.13703 1.92975 4.97397 2.67114ZM5.26453 8.24947L4.62884 7.78764L3.99316 8.24947L4.23599 7.50219L3.60028 7.04036H4.38604L4.62884 6.29309L4.87165 7.04036H5.65741L5.0217 7.50219L5.26453 8.24947ZM5.0217 5.31758L5.26453 6.06485L4.62884 5.60303L3.99316 6.06485L4.23599 5.31758L3.60028 4.85575H4.38604L4.62884 4.10848L4.87165 4.85575H5.65741L5.0217 5.31758ZM7.95461 8.24947L7.31893 7.78764L6.68325 8.24947L6.92608 7.50219L6.29037 7.04036H7.07613L7.31893 6.29309L7.56173 7.04036H8.34749L7.71178 7.50219L7.95461 8.24947ZM7.71178 5.31758L7.95461 6.06485L7.31893 5.60303L6.68325 6.06485L6.92608 5.31758L6.29037 4.85575H7.07613L7.31893 4.10848L7.56173 4.85575H8.34749L7.71178 5.31758ZM7.71178 3.13297L7.95461 3.88024L7.31893 3.41841L6.68325 3.88024L6.92608 3.13297L6.29037 2.67114H7.07613L7.31893 1.92386L7.56173 2.67114H8.34749L7.71178 3.13297Z"
+                fill="#1A47B8"
+              />
+            </svg>
+            English (US)
+          </button>
+          <!-- Dropdown -->
+          <div
+            class="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
+            id="language-dropdown-menu"
+          >
+            <ul class="p-2 text-sm text-body font-medium" role="none">
+              <li>
+                <a
+                  href="#"
+                  class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      class="h-4 w-4 me-1.5"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.00023 16.5C13.1425 16.5 16.5005 13.1421 16.5005 9C16.5005 4.85786 13.1425 1.5 9.00023 1.5C4.85797 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85797 16.5 9.00023 16.5Z"
+                        fill="white"
+                      />
+                      <path
+                        d="M8.67548 8.99996H16.5012C16.5012 8.32308 16.4109 7.66735 16.2428 7.04358H8.67548V8.99996Z"
+                        fill="#D80027"
+                      />
+                      <path
+                        d="M8.67548 5.08712H15.4004C14.9413 4.338 14.3543 3.67585 13.6699 3.13074H8.67548V5.08712Z"
+                        fill="#D80027"
+                      />
+                      <path
+                        d="M9.0005 16.5001C10.7655 16.5001 12.3878 15.89 13.6689 14.8698H4.33209C5.61318 15.89 7.23548 16.5001 9.0005 16.5001Z"
+                        fill="#D80027"
+                      />
+                      <path
+                        d="M2.60125 12.9132H15.4C15.7686 12.3118 16.0545 11.6543 16.2425 10.9567H1.75879C1.94679 11.6543 2.23265 12.3118 2.60125 12.9132Z"
+                        fill="#D80027"
+                      />
+                      <path
+                        d="M4.97397 2.67114H5.65741L5.0217 3.13297L5.26453 3.88024L4.62884 3.41841L3.99316 3.88024L4.20292 3.23468C3.6432 3.7009 3.15262 4.24713 2.74834 4.85575H2.96732L2.56266 5.14972C2.49962 5.25489 2.43915 5.36173 2.38121 5.47015L2.57444 6.06485L2.21393 5.80293C2.12432 5.99279 2.04235 6.18692 1.96867 6.3851L2.18156 7.04036H2.96732L2.33161 7.50219L2.57444 8.24947L1.93876 7.78764L1.55798 8.0643C1.51986 8.37066 1.5 8.6827 1.5 8.99941H8.99964C8.99964 4.85763 8.99964 4.36934 8.99964 1.5C7.51811 1.5 6.13703 1.92975 4.97397 2.67114ZM5.26453 8.24947L4.62884 7.78764L3.99316 8.24947L4.23599 7.50219L3.60028 7.04036H4.38604L4.62884 6.29309L4.87165 7.04036H5.65741L5.0217 7.50219L5.26453 8.24947ZM5.0217 5.31758L5.26453 6.06485L4.62884 5.60303L3.99316 6.06485L4.23599 5.31758L3.60028 4.85575H4.38604L4.62884 4.10848L4.87165 4.85575H5.65741L5.0217 5.31758ZM7.95461 8.24947L7.31893 7.78764L6.68325 8.24947L6.92608 7.50219L6.29037 7.04036H7.07613L7.31893 6.29309L7.56173 7.04036H8.34749L7.71178 7.50219L7.95461 8.24947ZM7.71178 5.31758L7.95461 6.06485L7.31893 5.60303L6.68325 6.06485L6.92608 5.31758L6.29037 4.85575H7.07613L7.31893 4.10848L7.56173 4.85575H8.34749L7.71178 5.31758ZM7.71178 3.13297L7.95461 3.88024L7.31893 3.41841L6.68325 3.88024L6.92608 3.13297L6.29037 2.67114H7.07613L7.31893 1.92386L7.56173 2.67114H8.34749L7.71178 3.13297Z"
+                        fill="#1A47B8"
+                      />
+                    </svg>
+                    English (US)
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      class="h-4 w-4 me-1.5"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.96631 11.6087C3.02601 14.4647 5.77508 16.5 8.99981 16.5C12.2245 16.5 14.9736 14.4647 16.0333 11.6087L8.99981 10.9565L1.96631 11.6087Z"
+                        fill="#FFDA44"
+                      />
+                      <path
+                        d="M8.99981 1.5C5.77508 1.5 3.02601 3.53531 1.96631 6.39132L8.99981 7.04347L16.0333 6.39129C14.9736 3.53531 12.2245 1.5 8.99981 1.5Z"
+                        fill="black"
+                      />
+                      <path
+                        d="M1.96649 6.39136C1.66503 7.20385 1.5 8.08264 1.5 9.00004C1.5 9.91744 1.66503 10.7962 1.96649 11.6087H16.0335C16.335 10.7962 16.5 9.91744 16.5 9.00004C16.5 8.08264 16.335 7.20385 16.0335 6.39136H1.96649Z"
+                        fill="#D80027"
+                      />
+                    </svg>
+                    Deutsch
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      class="h-4 w-4 me-1.5"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
+                        fill="white"
+                      />
+                      <path
+                        d="M16.5012 9.00018C16.5012 5.77544 14.4659 3.02637 11.6099 1.96667V16.0337C14.4659 14.974 16.5012 12.2249 16.5012 9.00018Z"
+                        fill="#D80027"
+                      />
+                      <path
+                        d="M1.5 8.99994C1.5 12.2247 3.53531 14.9737 6.39132 16.0334V1.96643C3.53531 3.02613 1.5 5.7752 1.5 8.99994Z"
+                        fill="#249F58"
+                      />
+                    </svg>
+                    Italiano
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      class="h-4 w-4 me-1.5"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
+                        fill="#D80027"
+                      />
+                      <path
+                        d="M5.60449 6.06458L6.25195 8.05676H8.34668L6.65332 9.29016L7.30078 11.2823L5.60449 10.0519L3.9082 11.2823L4.55859 9.29016L2.8623 8.05676H4.95703L5.60449 6.06458Z"
+                        fill="#FFDA44"
+                      />
+                      <path
+                        d="M10.3906 13.1162L9.89551 12.5068L9.16309 12.791L9.58789 12.1318L9.09277 11.5195L9.85156 11.7217L10.2793 11.0625L10.3203 11.8477L11.082 12.0498L10.3467 12.3311L10.3906 13.1162Z"
+                        fill="#FFDA44"
+                      />
+                      <path
+                        d="M11.375 11.3291L11.6094 10.5791L10.9678 10.125L11.7529 10.1133L11.9844 9.36328L12.2393 10.1074L13.0244 10.0986L12.3945 10.5674L12.6465 11.3115L12.0049 10.8574L11.375 11.3291Z"
+                        fill="#FFDA44"
+                      />
+                      <path
+                        d="M12.7041 7.00488L12.3584 7.71094L12.9209 8.25879L12.1445 8.14746L11.7988 8.85059L11.6641 8.07715L10.8848 7.96582L11.582 7.59961L11.4473 6.82324L12.0098 7.37109L12.7041 7.00488Z"
+                        fill="#FFDA44"
+                      />
+                      <path
+                        d="M10.4126 4.86621L10.354 5.64844L11.0835 5.94434L10.3188 6.13184L10.2632 6.91699L9.8501 6.24902L9.08545 6.43652L9.59229 5.83594L9.17627 5.1709L9.90576 5.4668L10.4126 4.86621Z"
+                        fill="#FFDA44"
+                      />
+                    </svg>
+                    中文 (繁體)
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        <button id="openMenu" class="md:hidden text-gray-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+</header>
+    <!-- Sección principal con CTA para empresas y tesis -->
+    <section class="dark:bg-gray-900">
+      <div
+        data-aos="zoom-in-up"
+        class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12"
+      >
+        <!-- Badge destacado (puede cambiar según el enfoque) -->
+        <div
+          class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-200 rounded-full dark:bg-gray-800 dark:text-white"
+        >
+          <span
+            class="text-xs bg-[#2AA4D9] rounded-full text-white px-4 py-1.5 mr-3"
+            >🔥 Oferta</span
+          >
+          <span class="text-sm font-medium"
+            >¡Descuento especial para proyectos Acaémicos!</span
+          >
+        </div>
+
+        <!-- Título principal adaptable -->
+        <h1
+          class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
+        >
+          <span class="block">Asesoría Académica Profesional</span>
+          <span class="text-[#2AA4D9]"
+            >para proyectos académicos, tesis y artículos</span
+          >
+        </h1>
+
+        <!-- Subtítulo dual (negocios + académico) -->
+        <p
+          class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
+        >
+          Brindamos <strong>acompañamiento académico especializado</strong> en
+          el desarrollo de
+          <strong
+            >proyectos de aula, tesis universitarias y artículos
+            científicos</strong
+          >, con orientación metodológica, redacción académica y cumplimiento de
+          normas institucionales.
+        </p>
+
+        <!-- Botones CTA segmentados -->
+        <div
+          class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4"
+        >
+          <!-- CTA Empresas -->
+          <a
+            href="#soluciones-empresas"
+            class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-[#2AA4D9] hover:bg-[#075985] focus:ring-4 focus:ring-blue-300 transition-colors"
+          >
+            <svg
+              class="mr-2 w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+            Tesis y artículos académico
+          </a>
+
+          <!-- CTA Tesis -->
+          <a
+            href="#asesoria-tesis"
+            class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 transition-colors"
+          >
+            <svg
+              class="mr-2 w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              ></path>
+            </svg>
+            Proyectos académicos
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tarjetas flotantes (hover para explicar servicios) -->
+    <section
+      id="soluciones-empresas"
+      class="bg-white rounded-lg shadow-lg p-8 dark:bg-gray-800 dark:rounded-lg dark:shadow-lg p-10"
+    >
+      <h2
+        class="text-3xl text-center font-bold mb-6 text-gray-900 dark:text-white"
+      >
+        Nuestros Servicios
+      </h2>
+      <p class="mb-8 text-center text-gray-500 dark:text-gray-400">
+        Ofrecemos una variedad de servicios diseñados para mejorar la eficiencia
+        y competitividad de tu negocio.
+      </p>
+
+      <div class="grid text-center grid-cols-1 md:grid-cols-3 gap-6 px-4 mt-12">
+        <!-- Tarjeta 1: Software -->
+        <div
+          class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700 transition-shadow"
+        >
+          <div class="flex justify-center mb-2">
+            <svg
+              class="w-10 h-10 mb-2 text-[#2AA4D9]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 3 3 3 0 016 3z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold dark:text-white">
+            Software Personalizado
+          </h3>
+
+          <p class="text-gray-500 dark:text-gray-400">
+            Sistemas para automatizar procesos empresariales o
+            <strong
+              >plataformas especializadas para investigación académica</strong
+            >.
+          </p>
+        </div>
+        <!-- Tarjeta 2: Dashboards -->
+        <div
+          class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700 transition-shadow"
+        >
+          <div class="flex justify-center mb-2">
+            <svg
+              class="w-10 h-10 mb-2 text-[#2AA4D9]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold dark:text-white">
+            Dashboards Académicos
+          </h3>
+
+          <p class="text-gray-500 dark:text-gray-400">
+            Visualización profesional de datos para tesis de ingeniería,
+            economía o ciencias de la salud.
+          </p>
+        </div>
+
+        <!-- Tarjeta 3: Web -->
+        <div
+          class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700 transition-shadow"
+        >
+          <div class="flex justify-center mb-2">
+            <svg
+              class="w-10 h-10 mb-2 text-[#2AA4D9]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold dark:text-white">Desarrollo Web</h3>
+
+          <p class="text-gray-500 dark:text-gray-400">
+            Portales interactivos para presentar resultados de tesis o
+            plataformas de recolección de datos.
+          </p>
+        </div>
+
+        <!-- Tarjeta Arduino -->
+        <div
+          class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700 transition-shadow text-center"
+        >
+          <div class="flex justify-center mb-2">
+            <!-- Icono tipo microchip -->
+            <svg
+              class="w-10 h-10 text-[#2AA4D9]"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16 8v8H8V8h8zm4-3v2m0 10v2m-4-18v2m0 14v2m-4-18v2m0 14v2m-4-18v2m0 14v2M4 5v2m0 10v2"
+              />
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold dark:text-white">
+            Proyectos con Arduino
+          </h3>
+
+          <p class="text-gray-500 dark:text-gray-400">
+            Soluciones con sensores, automatización y prototipos electrónicos
+            para investigación o educación.
+          </p>
+        </div>
+
+        <!-- Tarjeta 5: App Mobile -->
+        <div
+          class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700 transition-shadow"
+        >
+          <div class="flex justify-center mb-2">
+            <svg
+              class="w-10 h-10 mb-2 text-[#2AA4D9]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 4h10a1 1 0 011 1v14a1 1 0 01-1 1H7a1 1 0 01-1-1V5a1 1 0 011-1z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M11 18h2"
+              />
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold dark:text-white">Apps Móviles</h3>
+
+          <p class="text-gray-500 dark:text-gray-400">
+            Desarrollo de aplicaciones móviles híbridas o nativas para Android y
+            iOS con enfoque académico o empresarial.
+          </p>
+        </div>
+
+        <!-- Tarjeta 6: Consultoría -->
+        <div
+          class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-xl dark:bg-gray-800 dark:border-gray-700 transition-shadow"
+        >
+          <div class="flex justify-center mb-2">
+            <svg
+              class="w-10 h-10 mb-2 text-[#2AA4D9]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 10h.01M12 10h.01M16 10h.01M21 16.5a2.5 2.5 0 01-2.5 2.5H5.5A2.5 2.5 0 013 16.5v-9A2.5 2.5 0 015.5 5h13A2.5 2.5 0 0121 7.5v9z"
+              />
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-bold dark:text-white">
+            Consultoría Web
+          </h3>
+
+          <p class="text-gray-500 dark:text-gray-400">
+            Asesoría técnica para universidades, grupos de investigación o
+            emprendedores en temas de desarrollo y arquitectura web.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <header>Hero</header>
+    <section id="proceso">PROCESO</section>
+
+    <div class="sm:hidden">
+      <label for="tabs-icons" class="sr-only">Select your country</label>
+      <select
+        id="tabs-icons"
+        class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-3 py-2.5 shadow-xs placeholder:text-body"
+      >
+        <option>Profile</option>
+        <option>Dashboard</option>
+        <option>setting</option>
+        <option>Invoice</option>
+      </select>
+    </div>
+    <ul
+      class="hidden text-sm font-medium text-center text-body sm:flex -space-x-px"
+    >
+      <li class="w-full focus-within:z-10">
+        <a
+          href="#"
+          class="inline-flex items-center justify-center w-full text-body bg-neutral-primary-soft border border-default rounded-s-base hover:bg-neutral-secondary-medium hover:text-heading focus:ring-4 focus:ring-neutral-secondary-strong font-medium leading-5 text-sm px-4 py-2.5 focus:outline-none"
+          aria-current="page"
+        >
+          <svg
+            class="w-4 h-4 me-1.5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+          </svg>
+          Profile
+        </a>
+      </li>
+      <li class="w-full focus-within:z-10">
+        <a
+          href="#"
+          class="inline-flex items-center justify-center w-full text-body bg-neutral-primary-soft border border-default hover:bg-neutral-secondary-medium hover:text-heading focus:ring-4 focus:ring-neutral-secondary-strong font-medium leading-5 text-sm px-4 py-2.5 focus:outline-none"
+        >
+          <svg
+            class="w-4 h-4 me-1.5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"
+            />
+          </svg>
+          Dashboard
+        </a>
+      </li>
+      <li class="w-full focus-within:z-10">
+        <a
+          href="#"
+          class="inline-flex items-center justify-center w-full text-body bg-neutral-primary-soft border border-default hover:bg-neutral-secondary-medium hover:text-heading focus:ring-4 focus:ring-neutral-secondary-strong font-medium leading-5 text-sm px-4 py-2.5 focus:outline-none"
+        >
+          <svg
+            class="w-4 h-4 me-1.5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="2"
+              d="M20 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6h-2m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4"
+            />
+          </svg>
+          Settings
+        </a>
+      </li>
+      <li class="w-full focus-within:z-10">
+        <a
+          href="#"
+          class="inline-flex items-center justify-center w-full text-body bg-neutral-primary-soft border border-default rounded-e-base hover:bg-neutral-secondary-medium hover:text-heading focus:ring-4 focus:ring-neutral-secondary-strong font-medium leading-5 text-sm px-4 py-2.5 focus:outline-none"
+        >
+          <svg
+            class="w-4 h-4 me-1.5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 3v4a1 1 0 0 1-1 1H5m8-2h3m-3 3h3m-4 3v6m4-3H8M19 4v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1ZM8 12v6h8v-6H8Z"
+            />
+          </svg>
+          Invoice
+        </a>
+      </li>
+    </ul>
+
+    <section id="beneficios">BENEFICIOS</section>
+    <section id="areas">ÁREAS</section>
+    <section id="testimonios">TESTIMONIOS</section>
+    <section id="faq">FAQ</section>
+    <section id="contacto">CONTACTO</section>
+    <footer></footer>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
+
+<script>
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const menu = document.getElementById('menu');
+
+    openMenu.addEventListener('click', () => {
+        menu.classList.remove('max-md:w-0');
+        menu.classList.add('max-md:w-full');
+    });
+
+    closeMenu.addEventListener('click', () => {
+        menu.classList.remove('max-md:w-full');
+        menu.classList.add('max-md:w-0');
+    });
+</script>
+<script>
+  const toggleBtn = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+
+  // Cargar preferencia guardada
+  if (localStorage.getItem('theme') === 'dark') {
+    html.classList.add('dark');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    html.classList.toggle('dark');
+
+    // Guardar preferencia
+    if (html.classList.contains('dark')) {
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+    }
+  });
+</script>
+
+  </body>
+</html>
